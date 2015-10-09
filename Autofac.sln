@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac", "src\Autofac\Autofac.xproj", "{198CE8BE-0C4A-4DA6-8FFE-C5F949B2BBBF}"
 EndProject
@@ -13,13 +13,18 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Test", "test\Autofa
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Test.Scenarios.ScannedAssembly", "test\Autofac.Test.Scenarios.ScannedAssembly\Autofac.Test.Scenarios.ScannedAssembly.xproj", "{376ADF06-0774-4C00-AE45-4B0DF63779B2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Dnx", "src\Autofac.Dnx\Autofac.Dnx.xproj", "{513C7F7A-A758-4D48-94F4-891A00F63DA1}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Extensions.DependencyInjection", "src\Autofac.Extensions.DependencyInjection\Autofac.Extensions.DependencyInjection.xproj", "{513C7F7A-A758-4D48-94F4-891A00F63DA1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Dnx.Test", "test\Autofac.Dnx.Test\Autofac.Dnx.Test.xproj", "{911AA52A-4E68-41C5-AB24-D1618AFDF753}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Autofac.Extensions.DependencyInjection.Test", "test\Autofac.Extensions.DependencyInjection.Test\Autofac.Extensions.DependencyInjection.Test.xproj", "{911AA52A-4E68-41C5-AB24-D1618AFDF753}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutofacWebApiSample", "samples\AutofacWebApiSample\AutofacWebApiSample.xproj", "{081C1CA5-7AA4-4B21-A4E3-8888F9505D54}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7583CC17-6BBD-41DA-BBD1-4ABBA028F49B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{4136ACC5-EB8F-46C4-BABF-B16C7964C6C9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
