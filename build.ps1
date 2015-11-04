@@ -2,7 +2,7 @@
 # FUNCTIONS
 ########################
 function Install-Dnvm
-{
+{   
     & where.exe dnvm 2>&1 | Out-Null
     if(($LASTEXITCODE -ne 0) -Or ((Test-Path Env:\APPVEYOR) -eq $true))
     {
@@ -17,8 +17,9 @@ function Install-Dnvm
             $tempDnvmPath = Join-Path $env:TEMP "dnvminstall"
             $dnvmSetupCmdPath = Join-Path $tempDnvmPath "dnvm.ps1"
             & $dnvmSetupCmdPath setup
-        }
+        }	
     }
+	[Environment]::SetEnvironmentVariable("DNX_UNSTABLE_FEED", "https://www.myget.org/F/aspnetcidev", "User")
 }
 
 function Get-DnxVersion
