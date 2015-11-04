@@ -10,6 +10,7 @@ namespace Autofac.Test.Features.OpenGenerics
     {
         // ReSharper disable UnusedTypeParameter, InconsistentNaming
         public interface IDouble<T2, T3> { }
+        public interface ISingle<T> : IDouble<T, int> { }
         public class CReversed<T2, T1> : IDouble<T1, T2> { }
 
         public interface INested<T> { }
@@ -22,7 +23,7 @@ namespace Autofac.Test.Features.OpenGenerics
 
         public class CNestedDerivedReversed<TX, TY> : IDouble<TY, INested<Wrapper<TX>>> { }
         public class SameTypes<TA, TB> : IDouble<TA, INested<IDouble<TB, TA>>> { }
-
+        public class CDerivedSingle<T> : ISingle<T> { }
         public class SameTypes<TA, TB, TC> : IDouble<INested<TA>, INested<IDouble<TB, TC>>> { }
         // ReSharper restore UnusedTypeParameter, InconsistentNaming
 
@@ -93,7 +94,7 @@ namespace Autofac.Test.Features.OpenGenerics
         }
 
         [Fact]
-        public void TheSameaceholderWithThreeGenericParametersTypeCanAppearMultipleTimesInTheService()
+        public void TheSamePlaceholderWithThreeGenericParametersTypeCanAppearMultipleTimesInTheService()
         {
             var cb = new ContainerBuilder();
             cb.RegisterGeneric(typeof(SameTypes<,,>)).As(typeof(SameTypes<,,>).GetTypeInfo().ImplementedInterfaces.ToArray());
@@ -104,7 +105,7 @@ namespace Autofac.Test.Features.OpenGenerics
         }
 
         [Fact]
-        public void TheSameaceholderTypeCanAppearMultipleTimesInTheService()
+        public void TheSamePlaceholderTypeCanAppearMultipleTimesInTheService()
         {
             var cb = new ContainerBuilder();
             cb.RegisterGeneric(typeof(SameTypes<,>)).As(typeof(SameTypes<,>).GetInterfaces());
@@ -179,6 +180,18 @@ namespace Autofac.Test.Features.OpenGenerics
             var container = builder.Build();
 
             Assert.True(container.IsRegistered<MultiConstrained<int, IConstrainedConstraintWithOnlyAddedArgument<string>>>());
+        }
+
+        [Fact(Skip = "Issue #688")]
+        public void GenericArgumentArityDifference()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterGeneric(typeof(CDerivedSingle<>)).AsImplementedInterfaces();
+            var container = builder.Build();
+
+            // This should fill in IDouble<double, int>, but per issue #688
+            // it throws an ArgumentException.
+            container.Resolve<ISingle<double>>();
         }
     }
 }

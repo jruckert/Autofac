@@ -3,7 +3,7 @@
 
 # Autofac specific files
 Examples/Remember.Web/Content/DomainServicesExample.xap
-build_output/
+artifacts/
 
 # User-specific files
 *.suo
@@ -19,6 +19,9 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+
+# Visual Studio 2015 cache/options directory
+.vs/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/

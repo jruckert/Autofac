@@ -2,57 +2,31 @@
 
 This document explains the developer setup and build execution for Autofac.
 
+## Where to Work / Process
+
+Autofac follows the [Gitflow workflow process](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/) for handling releases. This means active development is done on the `develop` branch and we push to `master` when it's release time. **If you're creating a pull request or contribution, please do it on the `develop` branch.** We can then build, push to MyGet for testing, and release to NuGet when everything's verified.
+
 ## Developer Environment
 
- - Visual Studio 2013 Premium/Ultimate. (Include the *Windows Phone 8.0 SDK*
-   feature when installing.) This will give you:
-
-   - .NET 4.5
-   - WCF RIA Services
-   - Portable Class Library tooling
-   - FxCop
-   - SQL Server Express
-
+ - Visual Studio 2015 Premium/Ultimate.
  - **All** of the latest .NET, VS, and SQL patches through Microsoft Update.
  - **All** of the latest VS updates (stable/RTM, not RC) through VS Extension
    Manager.
- - [NUnit Test Adapter for VS11](http://nunit.org/index.php?p=vsTestAdapter&amp;r=2.6.3)
-   (optional - to run unit tests inside Visual Studio)
 
 ## Building the Project
 
-Developer build:
+At a PowerShell prompt run `build.ps1`.
 
-`msbuild default.proj`
+This will build everything in a release configuration and create NuGet packages. It will also run tests and code analysis.
 
-Production/Release build:
-
-`msbuild default.proj /p:Production=true`
-
-The **developer build** will...
-
- - Clean all build artifacts.
- - Build the solution.
- - Execute the unit tests.
- - Run code analysis.
-
-The **production/release build** will do everything in the developer build
-*plus*...
-
- - Create zip packages for distribution.
- - Create NuGet packages for distribution.
- - Build the compiled API help documentation.
-
-**Note for developers:** If you are working on the Autofac core, there is
-also a project in `Core/Tests/Autofac.Tests.AppCert` that should be built/run
+**Note:** If you are working on the Autofac core, there is
+also a project in `test/Autofac.Tests.AppCert` that should be built/run
 separately to verify changes will pass Windows App Store certification. This
 build is not chained into the standard developer build since it takes time to
 run. [There is a readme in that folder explaining more about how to run that
-build and assess results](https://github.com/autofac/Autofac/blob/master/Core/Tests/Autofac.Tests.AppCert/readme.html).
-Production package versions are centrally controlled through the 
-`PackageVersions.proj`. Documentation in that file explains how to use it.
-Before releasing new versions for consumption, be sure to update the
-appropriate version(s).
+build and assess results](https://github.com/autofac/Autofac/blob/master/test/Autofac.Tests.AppCert/readme.html).
+
+Production package versions are controlled through the build and the `project.json` files.
 
 ## Updating the API Documentation Site
 
@@ -63,22 +37,6 @@ repository.
 
  1. Build the API documentation.
  2. Update the contents in the `/apidoc` folder with the new docs (add/remove/update).
- 3. Make sure the index page in the `/apidoc` is `index.html` - lower case, 
+ 3. Make sure the index page in the `/apidoc` is `index.html` - lower case,
     full `html` extension. (By default, Sandcastle makes it `Index.htm` which
     doesn't work.)
-
-## Updating the User Documentation Site
-
-User documentation is viewable at [https://docs.autofac.org](https://docs.autofac.org)
-(a CNAME to [https://autofac.readthedocs.org](https://autofac.readthedocs.org)).
-It is stored in the `/docs` folder in this source repo.
-
-To build the docs and see them locally, you need to follow the 
-[Getting Started](https://docs.readthedocs.org/en/latest/getting_started.html)
-docs on Read The Docs so you get Python and Sphinx installed.
-
-The docs are written in [reStructuredText](http://sphinx-doc.org/rest.html),
-which is very similar to Markdown but not quite. Check that out for a primer.
-
-Updates to the documentation checked into the `/docs` folder will automatically
-propagate to Read The Docs. No build or separate push is required.
