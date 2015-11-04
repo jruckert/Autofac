@@ -16,7 +16,6 @@ artifacts:
 - path: artifacts\packages\**\*.nupkg
   name: MyGet
 
-<<<<<<< HEAD
 deploy:
 - provider: NuGet
   server: https://www.myget.org/F/autofac/api/v2/package
@@ -27,4 +26,3 @@ deploy:
   artifact: MyGet
 =======
 deploy: off
->>>>>>> ee887e93394207b6e774183bbad1aa1383b0a4c2
