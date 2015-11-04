@@ -26,7 +26,6 @@ IF "%BUILDCMD_KOREBUILD_VERSION%"=="" (
     .nuget\nuget.exe install OconicsBuild -version %BUILDCMD_KOREBUILD_VERSION% -ExcludeVersion -o packages -nocache -pre
 )
 .nuget\NuGet.exe install Sake -ExcludeVersion -Source https://www.nuget.org/api/v2/ -Out packages
-.nuget\NuGet.exe sources add -Name ParliamentCore -Source "https://www.myget.org/F/parliament-core/api/v3/index.json" -UserName %nuget_user% -Password %nuget_password%
 
 :getdnx
 IF "%BUILDCMD_DNX_VERSION%"=="" (
